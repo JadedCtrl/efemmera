@@ -51,8 +51,9 @@ int calc_menu ( struct eMenu*, int );
 
 void resize_menu	( struct eMenu* );
 
-void menu_select_up	(struct eMenu* );
-void menu_select_down	(struct eMenu* );
+int menu_select		( struct eMenu* );
+void menu_select_up	( struct eMenu* );
+void menu_select_down	( struct eMenu* );
 
 int  ideal_menu_height	( struct eMenu* );
 int  ideal_menu_width	( struct eMenu* );

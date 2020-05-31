@@ -65,6 +65,9 @@ calc_test ( Uint32 steps )
 	else
 		return 0;
 
+	if ( menucode > 0 )
+		spSleep(700000);
+		// sleep long enough after selection to play selection sound lol
 	return menucode;
 }
 
@@ -98,6 +101,7 @@ init_test_menu ( struct eMenu* menu )
 	menu->titleCentered = 0;
 	menu->textCentered = 0;
 	menu->moveSound = sounds[0];
+	menu->selectSound = sounds[1];
 	add_menu_element(menu, "give up");
 	add_menu_element(menu, "run away");
 	add_menu_element(menu, "eat a baby");
@@ -128,6 +132,7 @@ init_sounds ( void )
 {
 	spSoundInit();
 	add_sound("data/sound/tamborine.ogg");
+	add_sound("data/sound/eeuh.ogg");
 }
 
 

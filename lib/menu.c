@@ -143,7 +143,7 @@ calc_menu ( struct eMenu* menu, int sp_select_button )
 {
 	spSleep(50000);
 	if ( spGetInput()->button[sp_select_button] )
-		return menu->selection + 1;
+		return menu_select( menu );
 	else if ( spGetInput()->button[SP_BUTTON_DOWN] )
 		menu_select_down( menu ); 
 	else if ( spGetInput()->button[SP_BUTTON_UP] )
@@ -154,6 +154,15 @@ calc_menu ( struct eMenu* menu, int sp_select_button )
 }
 
 // -------------------------------------------------------------------
+// returns selected menu item, and plays proper sound
+int
+menu_select ( struct eMenu* menu )
+{
+	if ( menu->moveSound != NULL )
+		spSoundPlay( menu->selectSound, menu->soundChannel,0,0,-1 );
+	return menu->selection + 1;
+}
+
 // move an eMenu's selected element up by one (if possible)
 void
 menu_select_up ( struct eMenu* menu )
