@@ -149,8 +149,8 @@ calc_menu ( struct eMenu* menu, int sp_select_button )
 	else if ( spGetInput()->button[SP_BUTTON_UP] )
 		menu_select_up( menu ); 
 	else
-		return -1;
-	return 0;
+		return CALCMENU_NOINPUT;
+	return CALCMENU_MOVED;
 }
 
 // -------------------------------------------------------------------

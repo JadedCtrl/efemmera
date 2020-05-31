@@ -46,11 +46,13 @@ draw_test ( void )
 		       testMenu->surface );
 
 	spFontDrawMiddle( spGetWindowSurface()->w/2,
-		          spGetWindowSurface()->h-fonts[0]->maxheight*2.5, 0,
-			  "Press [S] to select", fonts[0] );
+		          spGetWindowSurface()->h
+			  - fonts[FN_COZETTE]->maxheight * 2.5, 0,
+			  "Press [S] to select", fonts[FN_COZETTE] );
 	spFontDrawMiddle( spGetWindowSurface()->w/2,
-		          spGetWindowSurface()->h-fonts[0]->maxheight-2, 0,
-			  "Press [E] to exit", fonts[0] );
+		          spGetWindowSurface()->h
+			  - fonts[FN_COZETTE]->maxheight -2, 0,
+			  "Press [E] to exit", fonts[FN_COZETTE] );
 	spFlip();
 }
 
@@ -59,13 +61,15 @@ int
 calc_test ( Uint32 steps )
 {
 	int menucode = calc_menu ( testMenu, SP_BUTTON_START );
-	if ( menucode == -1 )
+	// no input? interpret keypress as our own
+	if ( menucode == CALCMENU_NOINPUT )
 		if ( spGetInput()->button[SP_BUTTON_SELECT] )
 			return -1;
 	else
 		return 0;
 
-	if ( menucode > 0 )
+	// greater than _moved means it returned the inc'd menu selection index
+	if ( menucode > CALCMENU_MOVED )
 		spSleep(700000);
 		// sleep long enough after selection to play selection sound lol
 	return menucode;
@@ -96,12 +100,13 @@ init ( void )
 void
 init_test_menu ( struct eMenu* menu )
 {
-	init_menu( menu, "what do you do? <3", &fonts[1], &fonts[0],
+	init_menu( menu, "what do you do? <3",
+		   &fonts[FN_LOVEMECHAIN], &fonts[FN_COZETTE],
 		   spGetRGB(80,80,80), spGetRGB(35,71,107) );
 	menu->titleCentered = 0;
 	menu->textCentered = 0;
-	menu->moveSound = sounds[0];
-	menu->selectSound = sounds[1];
+	menu->moveSound   = sounds[SF_TAMBORINE];
+	menu->selectSound = sounds[SF_EEUH];
 	add_menu_element(menu, "give up");
 	add_menu_element(menu, "run away");
 	add_menu_element(menu, "eat a baby");

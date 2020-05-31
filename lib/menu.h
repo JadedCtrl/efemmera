@@ -1,5 +1,8 @@
 #include <sparrow3d.h>
 
+#define CALCMENU_NOINPUT -1
+#define CALCMENU_MOVED   0
+
 struct eMenu;
 struct eMenuElement;
 
