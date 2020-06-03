@@ -10,26 +10,26 @@ char fontPaths[10][512];
 // ============================================================================
 // add a TTF font at given path to the global `font` array
 void
-add_font ( char ttf_path[512] )
+addFont ( char ttf_path[512] )
 {
 	strcpy(fontPaths[fontCount], ttf_path);
 	fontCount++;
-	resize_fonts();
+	resizeFonts();
 }
 
 // ============================================================================
 // resizes/updates all fonts; should be run whenever window resizes
 void
-resize_fonts ( void )
+resizeFonts ( void )
 {
 	for ( int i = 0; i < fontCount; i++ ) {
-		resize_font(&fonts[i], fontPaths[i]);
+		resizeFont(&fonts[i], fontPaths[i]);
 	}
 }
 
 // resizes/updates a given font
 void
-resize_font ( spFontPointer* font, char ttf_path[512] )
+resizeFont ( spFontPointer* font, char ttf_path[512] )
 {
 	spFontShadeButtons(1);
 	
@@ -54,7 +54,7 @@ resize_font ( spFontPointer* font, char ttf_path[512] )
 // ============================================================================
 // cleans up all fonts in global array `fonts`
 void
-cleanup_fonts ( void )
+cleanupFonts ( void )
 {
 	for ( int i = 0; i < fontCount; i++ ) {
 		spFontDelete( fonts[i] );

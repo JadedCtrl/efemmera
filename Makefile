@@ -3,8 +3,8 @@
 # multiple-targets like sparrow3D!
 # whoops.
 
-SRC = lib/font.c lib/sound.c lib/menu.c 
-OBJ = font.o sound.o menu.o
+SRC = lib/button.c lib/font.c lib/sound.c lib/menu.c 
+OBJ = button.o font.o sound.o menu.o
 DEP = $(SRC:.c=.d)
 
 DYNAMIC = -lSDL_ttf -lSDL_mixer -lSDL_image -lSDL -lm

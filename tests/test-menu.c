@@ -41,7 +41,7 @@ draw_test ( void )
 	spClearTarget( spGetRGB(64,64,64) );
 	spSelectRenderTarget(spGetWindowSurface());
 
-	draw_menu ( testMenu->surface, testMenu );
+	drawMenu ( testMenu->surface, testMenu );
 	spBlitSurface( spGetWindowSurface()->w/2, spGetWindowSurface()->h/2, 0,
 		       testMenu->surface );
 
@@ -50,25 +50,25 @@ draw_test ( void )
 			  - fonts[FN_COZETTE]->maxheight * 2.5, 0,
 			  "Press [S] to select", fonts[FN_COZETTE] );
 	spFontDrawMiddle( spGetWindowSurface()->w/2,
-		          spGetWindowSurface()->h
+	          spGetWindowSurface()->h
 			  - fonts[FN_COZETTE]->maxheight -2, 0,
 			  "Press [E] to exit", fonts[FN_COZETTE] );
 	spFlip();
 }
 
 // input for the menu test
+// if non-zero return int, it's the index of the selected menu item + 1.
 int
 calc_test ( Uint32 steps )
 {
-	int menucode = calc_menu ( testMenu, SP_BUTTON_START );
+	int menucode = calcMenu( testMenu, SP_BUTTON_START, steps );
 	// no input? interpret keypress as our own
-	if ( menucode == CALCMENU_NOINPUT )
+	if ( menucode == CALCMENU_NOINPUT ) {
 		if ( spGetInput()->button[SP_BUTTON_SELECT] )
 			return -1;
-	else
 		return 0;
-
-	// greater than _moved means it returned the inc'd menu selection index
+	}
+	// greater than _MOVED means it returned the inc'd menu selection index
 	if ( menucode > CALCMENU_MOVED )
 		spSleep(700000);
 		// sleep long enough after selection to play selection sound lol
@@ -78,9 +78,9 @@ calc_test ( Uint32 steps )
 void
 resize ( Uint16 w, Uint16 h )
 {
-	spSelectRenderTarget(spGetWindowSurface());
-	resize_fonts();
-	resize_menu(testMenu);
+	spSelectRenderTarget( spGetWindowSurface());
+	resizeFonts();
+	resizeMenu( testMenu );
 }
 
 
@@ -100,26 +100,26 @@ init ( void )
 void
 init_test_menu ( struct eMenu* menu )
 {
-	init_menu( menu, "what do you do? <3",
-		   &fonts[FN_LOVEMECHAIN], &fonts[FN_COZETTE],
-		   spGetRGB(80,80,80), spGetRGB(35,71,107) );
+	initMenu( menu, "what do you do? <3",
+		  &fonts[FN_LOVEMECHAIN], &fonts[FN_COZETTE],
+		  spGetRGB(80,80,80), spGetRGB(35,71,107) );
 	menu->titleCentered = 0;
 	menu->textCentered = 0;
 	menu->moveSound   = sounds[SF_TAMBORINE];
 	menu->selectSound = sounds[SF_EEUH];
-	add_menu_element(menu, "give up");
-	add_menu_element(menu, "run away");
-	add_menu_element(menu, "eat a baby");
-	add_menu_element(menu, "wave hello");
-	add_menu_element(menu, "hug a stranger until they blush");
-	add_menu_element(menu, "oh well");
+	addMenuElement(menu, "give up");
+	addMenuElement(menu, "run away");
+	addMenuElement(menu, "eat a baby");
+	addMenuElement(menu, "wave hello");
+	addMenuElement(menu, "hug a stranger until they blush");
+	addMenuElement(menu, "oh well");
 }	
 
 void
 init_fonts ( void )
 {
-	add_font("data/font/cozette-vector.ttf");
-	add_font("data/font/love_me_chain.ttf");
+	addFont("data/font/cozette-vector.ttf");
+	addFont("data/font/love_me_chain.ttf");
 }
 
 void
@@ -136,8 +136,8 @@ void
 init_sounds ( void )
 {
 	spSoundInit();
-	add_sound("data/sound/tamborine.ogg");
-	add_sound("data/sound/eeuh.ogg");
+	addSound("data/sound/tamborine.ogg");
+	addSound("data/sound/eeuh.ogg");
 }
 
 
@@ -147,8 +147,8 @@ init_sounds ( void )
 int
 cleanup ( void )
 {
-	cleanup_fonts();
-	cleanup_sounds();
+	cleanupFonts();
+	cleanupSounds();
 	spDeleteSurface( menuSurface );
 	spQuitCore();
 }

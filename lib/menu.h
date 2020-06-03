@@ -28,6 +28,12 @@ struct eMenu
 	int titleCentered;
 	int textCentered;
 
+	int inputDelayStep;
+	int inputCutoffStep;
+	int inputDisable;
+	int inputReset;
+	int inputImmediate;
+
 	int menuBgColor;
 	int selectBgColor;
 
@@ -42,21 +48,21 @@ struct eMenu
 };
 
 
-void init_menu		( struct eMenu*, char title[512],
+void initMenu		( struct eMenu*, char title[512],
 			  spFontPointer*, spFontPointer*, int, int );
-void init_menu_element	( struct eMenu*, struct eMenuElement*, char[512] );
-void add_menu_element	( struct eMenu*, char[512] );
+void initMenuElement	( struct eMenu*, struct eMenuElement*, char[512] );
+void addMenuElement	( struct eMenu*, char[512] );
 
-void draw_menu		( SDL_Surface*, struct eMenu* );
-void draw_menu_element	( struct eMenuElement* );
+void drawMenu		( SDL_Surface*, struct eMenu* );
+void drawMenuElement	( struct eMenuElement* );
 
-int calc_menu ( struct eMenu*, int );
+int calcMenu		( struct eMenu*, int, Uint32 );
 
-void resize_menu	( struct eMenu* );
+void resizeMenu		( struct eMenu* );
 
-int menu_select		( struct eMenu* );
-void menu_select_up	( struct eMenu* );
-void menu_select_down	( struct eMenu* );
+int menuSelect		( struct eMenu*, Uint32 );
+void menuSelectUp	( struct eMenu*, Uint32 );
+void menuSelectDown	( struct eMenu*, Uint32 );
 
-int  ideal_menu_height	( struct eMenu* );
-int  ideal_menu_width	( struct eMenu* );
+int  idealMenuHeight	( struct eMenu* );
+int  idealMenuWidth	( struct eMenu* );

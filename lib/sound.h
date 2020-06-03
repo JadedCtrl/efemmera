@@ -3,5 +3,5 @@
 int soundCount;
 spSound* sounds[10];
 
-void add_sound		( char[512] );
-void cleanup_sounds	( void );
+void addSound		( char[512] );
+void cleanupSounds	( void );

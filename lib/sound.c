@@ -7,7 +7,7 @@ spSound* sounds[10] = { NULL };
 
 // add a sound to the global sounds array
 void
-add_sound ( char soundpath[512] )
+addSound ( char soundpath[512] )
 {
 	sounds[soundCount] = spSoundLoad(soundpath);
 	soundCount++;
@@ -15,7 +15,7 @@ add_sound ( char soundpath[512] )
 
 // cleanup all sounds
 void
-cleanup_sounds ( void )
+cleanupSounds ( void )
 {
 	for ( int i = 0; i < soundCount; i++ ) {
 		spSoundDelete( sounds[i] );
