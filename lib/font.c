@@ -45,6 +45,8 @@ resizeFont ( spFontPointer* font, char ttf_path[512] )
 	spFontAddBorder( *(font), 0 );
 	
 	//Have a look, how [S] in line 21 is drawn as a Button image.
+	spFontAddButton( *(font), 'A', SP_BUTTON_A_NAME, 65535,
+		         spGetRGB( 64, 64, 64 ) );
 	spFontAddButton( *(font), 'E', SP_BUTTON_SELECT_NAME, 65535,
 		         spGetRGB( 64, 64, 64 ) );
 	spFontAddButton( *(font), 'S', SP_BUTTON_START_NAME, 65535,

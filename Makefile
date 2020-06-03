@@ -54,10 +54,13 @@ all: tests
 targets:
 	@echo "The targets are the same like for sparrow3d. :P"
 
+test-sprites: tests/test-sprites.c $(OBJ) makeBuildDir
+	$(CC) $(CFLAGS) $(LINK_FLAGS) $< $(OBJ) $(SDL) $(INCLUDE) $(LIB) $(EFEMMERA_STATIC) $(DYNAMIC) -o $(BUILD)/tests/$@$(SUFFIX)
+
 test-menu: tests/test-menu.c $(OBJ) makeBuildDir
 	$(CC) $(CFLAGS) $(LINK_FLAGS) $< $(OBJ) $(SDL) $(INCLUDE) $(LIB) $(EFEMMERA_STATIC) $(DYNAMIC) -o $(BUILD)/tests/$@$(SUFFIX)
 
-tests: test-menu
+tests: test-menu test-sprites
 	@echo "=== Tests built ==="
 #efemmera: main.c $(OBJ) makeBuildDir
 	#$(CC) $(CFLAGS) $(LINK_FLAGS) $< $(OBJ) $(SDL) $(INCLUDE) $(LIB) $(EFEMMERA_STATIC) $(DYNAMIC) -o $(BUILD)/$@$(SUFFIX)
@@ -76,6 +79,7 @@ clean:
 	rm -f *.o *.d
 	rm -f lib/*.d lib/*.o
 	rm -f $(BUILD)/tests/test-menu$(SUFFIX)
+	rm -f $(BUILD)/tests/test-sprites$(SUFFIX)
 	rm -f $(BUILD)/efemmera$(SUFFIX)
 
 oclean:
