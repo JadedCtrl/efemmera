@@ -91,7 +91,7 @@ resizeMenu ( struct eMenu* menu )
 // ============================================================================
 // draw an eMenu on it's surface.
 void
-drawMenu ( SDL_Surface* surface, struct eMenu* menu )
+drawMenu ( struct eMenu* menu )
 {
 	SDL_Surface* old_surface = spGetRenderTarget( );
 	spSelectRenderTarget( menu->surface );

@@ -53,7 +53,7 @@ void initMenu		( struct eMenu*, char title[512],
 void initMenuElement	( struct eMenu*, struct eMenuElement*, char[512] );
 void addMenuElement	( struct eMenu*, char[512] );
 
-void drawMenu		( SDL_Surface*, struct eMenu* );
+void drawMenu		( struct eMenu* );
 void drawMenuElement	( struct eMenuElement* );
 
 int calcMenu		( struct eMenu*, int, Uint32 );

@@ -41,7 +41,7 @@ draw_test ( void )
 	spClearTarget( spGetRGB(64,64,64) );
 	spSelectRenderTarget(spGetWindowSurface());
 
-	drawMenu ( testMenu->surface, testMenu );
+	drawMenu ( testMenu );
 	spBlitSurface( spGetWindowSurface()->w/2, spGetWindowSurface()->h/2, 0,
 		       testMenu->surface );
 
