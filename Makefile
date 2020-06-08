@@ -3,8 +3,8 @@
 # multiple-targets like sparrow3D!
 # whoops.
 
-SRC = lib/button.c lib/font.c lib/sound.c lib/menu.c lib/scene.c
-OBJ = button.o font.o sound.o menu.o scene.o
+SRC = lib/button.c lib/font.c lib/sound.c lib/menu.c
+OBJ = button.o font.o sound.o menu.o
 DEP = $(SRC:.c=.d)
 
 DYNAMIC = -lSDL_ttf -lSDL_mixer -lSDL_image -lSDL -lm
@@ -58,10 +58,8 @@ test-sprites: tests/test-sprites.c $(OBJ) makeBuildDir
 	$(CC) $(CFLAGS) $(LINK_FLAGS) $< $(OBJ) $(SDL) $(INCLUDE) $(LIB) $(EFEMMERA_STATIC) $(DYNAMIC) -o $(BUILD)/tests/$@$(SUFFIX)
 test-menu: tests/test-menu.c $(OBJ) makeBuildDir
 	$(CC) $(CFLAGS) $(LINK_FLAGS) $< $(OBJ) $(SDL) $(INCLUDE) $(LIB) $(EFEMMERA_STATIC) $(DYNAMIC) -o $(BUILD)/tests/$@$(SUFFIX)
-test-dialogue: tests/test-dialogue.c $(OBJ) makeBuildDir
-	$(CC) $(CFLAGS) $(LINK_FLAGS) $< $(OBJ) $(SDL) $(INCLUDE) $(LIB) $(EFEMMERA_STATIC) $(DYNAMIC) -o $(BUILD)/tests/$@$(SUFFIX)
 
-tests: test-menu test-sprites test-dialogue
+tests: test-menu test-sprites
 	@echo "=== Tests built ==="
 #efemmera: main.c $(OBJ) makeBuildDir
 	#$(CC) $(CFLAGS) $(LINK_FLAGS) $< $(OBJ) $(SDL) $(INCLUDE) $(LIB) $(EFEMMERA_STATIC) $(DYNAMIC) -o $(BUILD)/$@$(SUFFIX)
